@@ -110,11 +110,13 @@ public class BallController : MonoBehaviour
 
 	}
 
-	public void StartSubCamera(){
+	public void StartSubCamera ()
+	{
 		subCamera.SetActive (true);
 	}
 
-	public void FinishSubCamera(){
+	public void FinishSubCamera ()
+	{
 		subCamera.transform.position = subCameraDefalutPosition;
 		subCamera.SetActive (false);
 	}
@@ -151,7 +153,18 @@ public class BallController : MonoBehaviour
 			//Camera.main.orthographicSize = 0.6f;
 			strikeimage1.enabled = false;
 			strikeimage2.enabled = false;
+			//runner1.enabled = true;
+			if (runner3.enabled == true) {
+				SceneManager.LoadScene ("WinScene");
+			}
+			if (runner1.enabled == true && runner2.enabled == false) {
+				runner2.enabled = true;
+			} else if (runner2.enabled == true) {
+				runner3.enabled = true;
+				runner2.enabled = false;
+			} 
 			runner1.enabled = true;
+
 			//point += 10;
 			//pointText.text = point.ToString ();
 			SetBallDefault ();
@@ -165,6 +178,14 @@ public class BallController : MonoBehaviour
 			//Camera.main.orthographicSize = 0.6f;
 			strikeimage1.enabled = false;
 			strikeimage2.enabled = false;
+
+			if (runner2.enabled == true || runner3.enabled ==true) {
+				SceneManager.LoadScene ("WinScene");
+			}
+			if (runner1.enabled == true) {
+				runner3.enabled = true;
+				runner1.enabled = false;
+			}
 			runner2.enabled = true;
 			//point += 10;
 			//pointText.text = point.ToString ();
@@ -220,10 +241,12 @@ public class BallController : MonoBehaviour
 				strikeimage1.enabled = false;
 				strikeimage2.enabled = false;
 
-				if (outimage1.enabled == true) {
+				if (outimage1.enabled == false) {
+					outimage1.enabled = true;
+				} else if (outimage1.enabled == true && outimage2.enabled == false) {
 					outimage2.enabled = true;
 				} else {
-					outimage1.enabled = true;
+					SceneManager.LoadScene ("GameOverScene");
 				}
 				Debug.Log ("sanshinn");
 			
@@ -240,15 +263,15 @@ public class BallController : MonoBehaviour
 			strikeimage1.enabled = false;
 			strikeimage2.enabled = false;
 
-			if (outimage1.enabled == true) {
+			if (outimage1.enabled == false) {
+				outimage1.enabled = true;
+			} else if (outimage1.enabled == true && outimage2.enabled == false) {
 				outimage2.enabled = true;
 			} else {
-				outimage1.enabled = true;
-			}
-
-			if (outimage2.enabled == true) {
 				SceneManager.LoadScene ("GameOverScene");
 			}
+				
+
 			SetBallDefault ();
 		}
 		if (col.gameObject.tag == "Out") {
@@ -261,12 +284,11 @@ public class BallController : MonoBehaviour
 			strikeimage1.enabled = false;
 			strikeimage2.enabled = false;
 
-			if (outimage1.enabled == true) {
+			if (outimage1.enabled == false) {
+				outimage1.enabled = true;
+			} else if (outimage1.enabled == true && outimage2.enabled == false) {
 				outimage2.enabled = true;
 			} else {
-				outimage1.enabled = true;
-			}
-			if (outimage2.enabled == true) {
 				SceneManager.LoadScene ("GameOverScene");
 			}
 			SetBallDefault ();

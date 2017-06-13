@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public class GameOverSceneManager : MonoBehaviour {
 
-public class StartSceneManager : MonoBehaviour
-{
 
-	public void StartButton ()
+	public void EndButton ()
 	{
-		SceneManager.LoadScene ("main");
+		SceneManager.LoadScene ("Startscene");
 	}
-
 }
